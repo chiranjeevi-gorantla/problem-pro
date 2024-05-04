@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       status: 400,
     });
 
-  const newProblem = prisma.Problem.create({
+  const newProblem = await prisma.problem.create({
     data: {
       title: body.title,
       description: body.description,
