@@ -1,6 +1,5 @@
 'use client';
 import { TextField, Button, Callout, Text } from '@radix-ui/themes';
-import SimpleMDE from 'react-simplemde-editor';
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import 'easymde/dist/easymde.min.css';
@@ -38,6 +37,12 @@ const NewProblemPage = () => {
     }
   });
 
+  // To Ensure SimpleMDE is only imported in the browser environment
+  const SimpleMDE =
+    typeof window !== 'undefined'
+      ? require('react-simplemde-editor').default
+      : null;
+
   return (
     <div className='max-w-xl'>
       {error && (
@@ -48,13 +53,15 @@ const NewProblemPage = () => {
       <form className='space-y-3' onSubmit={onSubmit}>
         <TextField.Root placeholder='Title' {...register('title')} />
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
-        <Controller
-          name='description'
-          control={control}
-          render={({ field }) => (
-            <SimpleMDE placeholder='Description' {...field} />
-          )}
-        />
+        {SimpleMDE && (
+          <Controller
+            name='description'
+            control={control}
+            render={({ field }) => (
+              <SimpleMDE placeholder='Description' {...field} />
+            )}
+          />
+        )}
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button disabled={isSubmitting}>
           Submit New Problem
