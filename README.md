@@ -1,4 +1,4 @@
-## Tech Stack - Next.js, TypeScript, Tailwind, Daisy UI, Prisma, NextAuth.js
+## Tech Stack - Next.js, TypeScript, Tailwind, Radix UI, Prisma
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
